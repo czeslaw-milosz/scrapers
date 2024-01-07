@@ -129,8 +129,7 @@ FEEDS = {
         "overwrite": True,
     }
 }
-IMAGES_STORE = "s3://scrapyimgs/"
-# IMAGES_STORE_S3_ACL = "public-read"
+IMAGES_STORE = "s3://otodomimgs/"
 AWS_ENDPOINT_URL = 'http://localhost:9000'
 AWS_ACCESS_KEY_ID = 'admin'
 AWS_SECRET_ACCESS_KEY = 'adminadmin'
