@@ -15,6 +15,7 @@ class OtodomItem(scrapy.Item):
     description = scrapy.Field()
     offer_type = scrapy.Field()
     offer_date = scrapy.Field()
+    modified_date = scrapy.Field()
     location = scrapy.Field()
     price_total = scrapy.Field()
     price_per_msq = scrapy.Field()

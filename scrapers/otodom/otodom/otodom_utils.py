@@ -70,3 +70,20 @@ def get_offer_id(response: scrapy.http.response.html.HtmlResponse) -> str:
         response.xpath("//script[@id='__NEXT_DATA__']/text()").get()
     )["props"]["pageProps"]["ad"]["id"]
     return f"otodom_{original_offer_id}"
+
+
+def get_posting_dates(response: scrapy.http.response.html.HtmlResponse) -> tuple(str|None, str|None):
+    """Extract offer's posting and refreshing date from response of otodom scraper.
+    
+    Args:
+        response (scrapy.http.response.html.HtmlResponse): response of otodom scraper
+    
+    Returns:
+        tuple(str|None): offer_date, refresh_date
+    """
+    page_attrs = ujson.loads(
+        response.xpath("//script[@id='__NEXT_DATA__']/text()").get()
+    )
+    offer_date = page_attrs["props"]["pageProps"]["ad"]["createdAt"] or None
+    modified_date = page_attrs["props"]["pageProps"]["ad"]["modifiedAt"] or None
+    return offer_date, modified_date

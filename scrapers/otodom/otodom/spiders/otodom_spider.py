@@ -10,6 +10,7 @@ from scrapy.spiders import CrawlSpider, Rule
 from otodom import otodom_utils
 from otodom.items import OtodomItem
 
+# Suppress scrapy's unreasonable default logging of the whole scraped content
 logging.getLogger("scrapy.core.scraper").addFilter(
     lambda x: not x.getMessage().startswith("Scraped from"))
 
@@ -57,5 +58,7 @@ class OtodomSpider(CrawlSpider):
         l.add_value("image_urls", img_urls)
         logging.info(f"IMAGE URLS: {img_urls}")
 
-        l.add_value("offer_date", None)
+        offer_date, modified_date = otodom_utils.get_posting_dates(response)
+        l.add_value("offer_date", offer_date)
+        l.add_value("modified_date", modified_date)
         yield l.load_item()
