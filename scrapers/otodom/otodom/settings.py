@@ -90,7 +90,8 @@ USER_AGENT = latest_user_agents.get_random_user_agent()
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-   "otodom.pipelines.OtodomPipeline": 300,
+#    "otodom.pipelines.OtodomPipeline": 300,
+   "scapers.common.pipelines.BatchPulsarExportPipeline": 300,
    "scrapy.pipelines.images.ImagesPipeline": 1,
 }
 
@@ -123,16 +124,20 @@ FEED_EXPORT_ENCODING = "utf-8"
 
 
 # Configure export feed
-FEEDS = {
-    "s3://scrapytest/%(name)s_%(time)s.csv": {
-        "format": "csv",
-        "overwrite": True,
-    }
-}
+# FEEDS = {
+#     "s3://scrapytest/%(name)s_%(time)s.csv": {
+#         "format": "csv",
+#         "overwrite": True,
+#     }
+# }
 IMAGES_STORE = "s3://otodomimgs/"
-AWS_ENDPOINT_URL = 'http://localhost:9000'
-AWS_ACCESS_KEY_ID = 'admin'
-AWS_SECRET_ACCESS_KEY = 'adminadmin'
+AWS_ENDPOINT_URL = "http://localhost:9000"
+AWS_ACCESS_KEY_ID = "admin"
+AWS_SECRET_ACCESS_KEY = "adminadmin"
+
+PULSAR_BATCH_SIZE = 128
+PULSAR_URL = "pulsar://localhost:6650"
+PULSAR_TOPIC = "crawl"
 
 # Logging settings
 LOG_FILE = "logs/otodom.log"

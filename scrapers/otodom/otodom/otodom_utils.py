@@ -72,7 +72,7 @@ def get_offer_id(response: scrapy.http.response.html.HtmlResponse) -> str:
     return f"otodom_{original_offer_id}"
 
 
-def get_posting_dates(response: scrapy.http.response.html.HtmlResponse) -> tuple(str|None, str|None):
+def get_posting_dates(response: scrapy.http.response.html.HtmlResponse) -> tuple[str|None, str|None]:
     """Extract offer's posting and refreshing date from response of otodom scraper.
     
     Args:

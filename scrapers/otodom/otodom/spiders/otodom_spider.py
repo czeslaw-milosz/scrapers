@@ -56,7 +56,7 @@ class OtodomSpider(CrawlSpider):
         
         img_urls = otodom_utils.get_image_urls(response)
         l.add_value("image_urls", img_urls)
-        logging.info(f"IMAGE URLS: {img_urls}")
+        # logging.info(f"IMAGE URLS: {img_urls}")
 
         offer_date, modified_date = otodom_utils.get_posting_dates(response)
         l.add_value("offer_date", offer_date)
