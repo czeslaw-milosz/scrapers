@@ -1,23 +1,26 @@
-import scrapy
+import datetime
+from dataclasses import dataclass, field
 
 
-class OlxItem(scrapy.Item):
-    offer_source = scrapy.Field()
-    offer_id = scrapy.Field()
-    title = scrapy.Field()
-    canonical_url = scrapy.Field()
-    short_description = scrapy.Field()
-    description = scrapy.Field()
-    price_total = scrapy.Field()
-    offer_type = scrapy.Field()
-    offer_date = scrapy.Field()
-    modified_date = scrapy.Field()
-    offer_location = scrapy.Field()
-    price_per_msq = scrapy.Field()
-    primary_market = scrapy.Field()
-    floor = scrapy.Field()
-    building_type = scrapy.Field()
-    size = scrapy.Field()
-    n_rooms = scrapy.Field()
-    image_urls = scrapy.Field()
-    images = scrapy.Field()
+@dataclass
+class OlxItem:
+    offer_source: str = field(default="olx")
+    offer_id: str = field(default="")
+    date_scraped: datetime.datetime = field(default=datetime.datetime.now())
+    title: str = field(default="")
+    canonical_url: str = field(default="")
+    short_description: str = field(default="")
+    description: str = field(default="")
+    price_total: str = field(default="")
+    offer_type: str = field(default="")
+    offer_date: str = field(default="")
+    modified_date: str = field(default="")
+    offer_location: str = field(default="")
+    price_per_msq: str = field(default="")
+    primary_market: bool = field(default="")
+    floor: str = field(default="")
+    building_type: str = field(default="")
+    size: str = field(default="")
+    n_rooms: str = field(default="")
+    image_urls: list[str] = field(default_factory=list)
+    images: list[str] = field(default_factory=list)
