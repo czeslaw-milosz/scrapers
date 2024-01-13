@@ -1,6 +1,7 @@
 import datetime
 import logging
 
+from itemloaders.processors import Identity, TakeFirst
 from scrapy.spiders import CrawlSpider, Rule
 from scrapy.linkextractors import LinkExtractor
 from scrapy.loader import ItemLoader
@@ -31,10 +32,14 @@ class OlxSpider(CrawlSpider):
 
     def parse_details(self, response):
         l = ItemLoader(item=OlxItem(), response=response)
+        l.default_output_processor = TakeFirst()
+        l.image_urls_out = Identity()
+        l.images_out = Identity()
 
         l.add_value("offer_source", "olx")
-        offer_id = int(response.xpath("//div[@data-cy='ad-footer-bar-section']/span/text()").getall()[-1])
+        offer_id = response.xpath("//div[@data-cy='ad-footer-bar-section']/span/text()").getall()[-1] or ""
         l.add_value("offer_id", offer_id)
+        l.add_value("date_scraped", datetime.datetime.now())
         l.add_xpath("title", "//title/text()")
         l.add_xpath("canonical_url", "//link[@rel='canonical']/@href")
         l.add_xpath("short_description", "//meta[@name='description']/@content")

@@ -20,6 +20,8 @@ ipython = "^8.19.0"
 pandas = "^2.1.4"
 pulsar-client = {version = "3.4.0", extras = ["all"]}
 polars = "^0.20.3"
+pyarrow = "^14.0.2"
+deltalake = "^0.15.1"
 
 
 [build-system]
