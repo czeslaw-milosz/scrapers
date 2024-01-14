@@ -91,7 +91,8 @@ USER_AGENT = latest_user_agents.get_random_user_agent()
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    "scrapers.common.pipelines.BatchDeltaExportPipeline": 300,
-   "scrapy.pipelines.images.ImagesPipeline": 1,
+   "scrapers.common.pipelines.RootImagesPipeline": 1,
+   # "scrapy.pipelines.images.ImagesPipeline": 1,
 }
 
 

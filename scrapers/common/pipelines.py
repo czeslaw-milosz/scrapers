@@ -8,6 +8,7 @@ from dataclasses import asdict
 
 import polars as pl
 from scrapy.exporters import PythonItemExporter
+from scrapy.pipelines.images import ImagesPipeline
 
 # class BatchPulsarExportPipeline:
 #     def __init__(self, batch_size=128, pulsar_url="pulsar://localhost:6650", topic="default_topic"):
@@ -106,3 +107,12 @@ class BatchDeltaExportPipeline:
                     },
             )
             self.batch_items = []
+
+
+class RootImagesPipeline(ImagesPipeline):
+    """gets rid of scrapy's hardcoded '/full/' path"""
+
+    def file_path(self, request, response=None, info=None):
+        """This is the method used to determine file path"""
+        path = super().file_path(request, response, info)
+        return path.replace("full/", "")
