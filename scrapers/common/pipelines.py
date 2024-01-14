@@ -112,7 +112,7 @@ class BatchDeltaExportPipeline:
 class RootImagesPipeline(ImagesPipeline):
     """gets rid of scrapy's hardcoded '/full/' path"""
 
-    def file_path(self, request, response=None, info=None):
+    def file_path(self, request, response=None, info=None, *, item=None):
         """This is the method used to determine file path"""
         path = super().file_path(request, response, info)
         return path.replace("full/", "")

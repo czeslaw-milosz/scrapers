@@ -45,7 +45,7 @@ def get_detail_fields(response: scrapy.http.response.html.HtmlResponse) -> tuple
     return offer_type, price_per_msq, primary_market, floor, building_type, size, n_rooms
 
 
-def get_fields_from_script_elt(response) -> tuple(str):
+def get_fields_from_script_elt(response) -> tuple[str, str, str, str]:
     script_elt = response.xpath("//script[@id='olx-init-config']/text()").get()
     js_dict = ujson.loads(ujson.loads(
         script_elt.split("\n")[4].strip().replace("window.__PRERENDERED_STATE__= ", "")[:-1]
