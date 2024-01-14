@@ -1,6 +1,7 @@
 from typing import Any
 
 import scrapy
+import ujson
 
 
 def get_detail_fields(response: scrapy.http.response.html.HtmlResponse) -> tuple[Any]:
@@ -42,4 +43,18 @@ def get_detail_fields(response: scrapy.http.response.html.HtmlResponse) -> tuple
     n_rooms = tmp[0].split(" ")[2].strip() if tmp else ""
 
     return offer_type, price_per_msq, primary_market, floor, building_type, size, n_rooms
+
+
+def get_fields_from_script_elt(response) -> tuple(str):
+    script_elt = response.xpath("//script[@id='olx-init-config']/text()").get()
+    js_dict = ujson.loads(ujson.loads(
+        script_elt.split("\n")[4].strip().replace("window.__PRERENDERED_STATE__= ", "")[:-1]
+    ))
+    param_dicts = js_dict["ad"]["ad"]["params"]
+    price_total = js_dict["ad"]["ad"]["price"]["displayValue"] or ""
+    location_district = js_dict["ad"]["ad"]["location"]["districtName"] or ""
+    location_city = js_dict["ad"]["ad"]["location"]["cityName"] or ""
+    location_region = js_dict["ad"]["ad"]["location"]["regionNormalizedName"] or ""
+    return price_total, location_district, location_city, location_region
+
 
