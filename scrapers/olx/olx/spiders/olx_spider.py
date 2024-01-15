@@ -22,6 +22,8 @@ class OlxSpider(CrawlSpider):
     ]
     start_urls = [
         "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/warszawa/",
+        "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/krakow/",
+        "https://www.olx.pl/nieruchomosci/mieszkania/sprzedaz/wroclaw/",
     ]
     rules = (
         # Extract links matching data-testid='pagination-forward' and follow links from them (no callback means follow=True by default).
