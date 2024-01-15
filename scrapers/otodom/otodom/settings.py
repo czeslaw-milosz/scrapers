@@ -143,6 +143,6 @@ EXPORT_BATCH_SIZE = 512
 DELTA_TABLE = f"housingdatalake/{BOT_NAME}/"
 
 # Logging settings
-LOG_FILE = "logs/otodom.log"
+# LOG_FILE = "logs/otodom.log"
 LOG_ENCODING = "utf-8"
 

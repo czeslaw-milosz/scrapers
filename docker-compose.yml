@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+
+  scrapyd:
+    image: zentekmx/scrapyd
+    ports:
+    - 6800:6800
