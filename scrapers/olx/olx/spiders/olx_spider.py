@@ -1,4 +1,5 @@
 import datetime
+import locale
 import logging
 
 from itemloaders.processors import Identity, TakeFirst
@@ -12,6 +13,7 @@ from olx.items import OlxItem
 # Suppress scrapy's unreasonable default logging of the whole scraped content
 logging.getLogger("scrapy.core.scraper").addFilter(
     lambda x: not x.getMessage().startswith("Scraped from"))
+locale.setlocale(locale.LC_ALL,'pl_PL.utf-8')
 
 
 class OlxSpider(CrawlSpider):

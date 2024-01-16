@@ -71,9 +71,9 @@ def get_fields_from_script_elt(response: scrapy.http.response.html.HtmlResponse)
         response.xpath("//script[@id='__NEXT_DATA__']/text()").get()
     )
     original_offer_id = json_data["props"]["pageProps"]["ad"]["id"] or ""
-    city = json_data["ad"]["target"]["City"] or ""
+    city = json_data["props"]["pageProps"]["ad"]["target"]["City"] or ""
     district = json_data["props"]["pageProps"]["ad"]["location"]["address"]["district"]["name"] or ""
-    region = json_data["ad"]["target"]["Province"] or ""
+    region = json_data["props"]["pageProps"]["ad"]["target"]["Province"] or ""
     return f"otodom_{original_offer_id}", city, district, region
 
 

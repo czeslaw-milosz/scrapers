@@ -106,7 +106,7 @@ AUTOTHROTTLE_ENABLED = True
 #AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-#AUTOTHROTTLE_TARGET_CONCURRENCY = 1.0
+AUTOTHROTTLE_TARGET_CONCURRENCY = 5.0
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
@@ -131,8 +131,8 @@ FEED_EXPORT_ENCODING = "utf-8"
 #         "overwrite": True,
 #     }
 # }
-IMAGES_STORE = f"s3://housing/images/{BOT_NAME}/"
-AWS_ENDPOINT_URL = "http://localhost:9000"
+IMAGES_STORE = f"s3://test-lake/images/{BOT_NAME}/"
+AWS_ENDPOINT_URL = "http://minio:9000"
 AWS_ACCESS_KEY_ID = "admin"
 AWS_SECRET_ACCESS_KEY = "adminadmin"
 
@@ -141,7 +141,7 @@ PULSAR_URL = "pulsar://localhost:6650"
 PULSAR_TOPIC = "crawl"
 
 EXPORT_BATCH_SIZE = 512
-DELTA_TABLE = f"housing/{BOT_NAME}"
+DELTA_TABLE = f"test-lake/{BOT_NAME}"
 
 # Logging settings
 # LOG_FILE = "logs/olx.log"
