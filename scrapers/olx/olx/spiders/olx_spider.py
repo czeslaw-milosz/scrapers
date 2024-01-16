@@ -65,6 +65,8 @@ class OlxSpider(CrawlSpider):
         offer_date = response.xpath("//span[@data-cy='ad-posted-at']/text()").get().replace("o ", "")
         if "Dzisiaj" in offer_date:
             offer_date.replace("Dzisiaj", datetime.datetime.now().strftime("%Y-%m-%d"))
+        else:
+            offer_date = datetime.datetime.strptime(offer_date, "%d %B %Y").strftime("%Y-%m-%d")
         l.add_value("offer_date", offer_date)
         l.add_value("modified_date", offer_date)
 

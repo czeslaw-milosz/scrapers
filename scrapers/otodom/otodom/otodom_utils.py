@@ -1,3 +1,4 @@
+import datetime
 from typing import Any
 
 import scrapy
@@ -89,5 +90,9 @@ def get_posting_dates(response: scrapy.http.response.html.HtmlResponse) -> tuple
         response.xpath("//script[@id='__NEXT_DATA__']/text()").get()
     )
     offer_date = page_attrs["props"]["pageProps"]["ad"]["createdAt"] or None
+    if offer_date:
+        offer_date = datetime.datetime.strptime(offer_date, "%Y-%m-%dT%H:%M:%f%z").strftime("%Y-%m-%d")
     modified_date = page_attrs["props"]["pageProps"]["ad"]["modifiedAt"] or None
+    if modified_date:
+        modified_date = datetime.datetime.strptime(modified_date, "%Y-%m-%dT%H:%M:%f%z").strftime("%Y-%m-%d")
     return offer_date, modified_date
