@@ -69,6 +69,7 @@ def get_offer_id(response: scrapy.http.response.html.HtmlResponse) -> str:
     original_offer_id = ujson.loads(
         response.xpath("//script[@id='__NEXT_DATA__']/text()").get()
     )["props"]["pageProps"]["ad"]["id"]
+    # ["ad"]["target"]["city"]
     return f"otodom_{original_offer_id}"
 
 

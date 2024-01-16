@@ -24,6 +24,7 @@ pyarrow = "^14.0.2"
 deltalake = "^0.15.1"
 scrapyd = "^1.4.3"
 scrapyd-client = "^1.2.3"
+logparser = "^0.8.2"
 
 
 [build-system]
