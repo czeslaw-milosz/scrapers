@@ -48,7 +48,10 @@ class OlxSpider(CrawlSpider):
         l.add_xpath("description", "//div[@data-cy='ad_description']/div//text()")
         price_total, location_district, location_city, location_region = olx_utils.get_fields_from_script_elt(response)
         l.add_value("price_total", price_total)
-        l.add_value("offer_location", ";".join((location_district, location_city, location_region)))
+        l.add_value("location", ";".join((location_district, location_city, location_region)))
+        l.add_value("city", location_city)
+        l.add_value("district", location_district)
+        l.add_value("region", location_region)
 
         offer_type, price_per_msq, primary_market, floor, building_type, size, n_rooms = olx_utils.get_detail_fields(response)
         l.add_value("offer_type", offer_type)

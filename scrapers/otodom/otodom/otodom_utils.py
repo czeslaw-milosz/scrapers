@@ -57,7 +57,7 @@ def get_image_urls(response: scrapy.http.response.html.HtmlResponse, img_size: s
     ]
 
 
-def get_offer_id(response: scrapy.http.response.html.HtmlResponse) -> str:
+def get_fields_from_script_elt(response: scrapy.http.response.html.HtmlResponse) -> tuple[str, str, str, str]:
     """Extract offer id from response of otodom scraper.
     
     Args:
@@ -66,11 +66,14 @@ def get_offer_id(response: scrapy.http.response.html.HtmlResponse) -> str:
     Returns:
         str: offer id (formatted according to our convention: otodom_{original_offer_id})
     """
-    original_offer_id = ujson.loads(
+    json_data = ujson.loads(
         response.xpath("//script[@id='__NEXT_DATA__']/text()").get()
-    )["props"]["pageProps"]["ad"]["id"]
-    # ["ad"]["target"]["city"]
-    return f"otodom_{original_offer_id}"
+    )
+    original_offer_id = json_data["props"]["pageProps"]["ad"]["id"] or ""
+    city = json_data["ad"]["target"]["City"] or ""
+    district = json_data["props"]["pageProps"]["ad"]["location"]["address"]["district"]["name"] or ""
+    region = json_data["ad"]["target"]["Province"] or ""
+    return f"otodom_{original_offer_id}", city, district, region
 
 
 def get_posting_dates(response: scrapy.http.response.html.HtmlResponse) -> tuple[str|None, str|None]:

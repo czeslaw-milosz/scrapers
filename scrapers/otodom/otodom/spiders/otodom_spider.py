@@ -55,8 +55,9 @@ class OtodomSpider(CrawlSpider):
         l.images_out = Identity()
 
         l.add_value("offer_source", "otodom")
-        offer_id = otodom_utils.get_offer_id(response)
+        offer_id, city, district, region = otodom_utils.get_fields_from_script_elt(response)
         l.add_value("offer_id", offer_id)
+        l.add_value("city", city)
         l.add_value("date_scraped", datetime.datetime.now())
         l.add_xpath("title", "//title/text()")
         l.add_xpath("canonical_url", "//link[@rel='canonical']/@href")
