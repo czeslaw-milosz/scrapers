@@ -106,7 +106,7 @@ AUTOTHROTTLE_ENABLED = True
 #AUTOTHROTTLE_MAX_DELAY = 60
 # The average number of requests Scrapy should be sending in parallel to
 # each remote server
-AUTOTHROTTLE_TARGET_CONCURRENCY = 5.0
+# AUTOTHROTTLE_TARGET_CONCURRENCY = 5.0
 # Enable showing throttling stats for every response received:
 #AUTOTHROTTLE_DEBUG = False
 
@@ -136,9 +136,9 @@ AWS_ENDPOINT_URL = "http://minio:9000"
 AWS_ACCESS_KEY_ID = "admin"
 AWS_SECRET_ACCESS_KEY = "adminadmin"
 
-PULSAR_BATCH_SIZE = 256
-PULSAR_URL = "pulsar://localhost:6650"
-PULSAR_TOPIC = "crawl"
+# PULSAR_BATCH_SIZE = 256
+# PULSAR_URL = "pulsar://localhost:6650"
+# PULSAR_TOPIC = "crawl"
 
 EXPORT_BATCH_SIZE = 512
 DELTA_TABLE = f"housingdatalake/{BOT_NAME}"
