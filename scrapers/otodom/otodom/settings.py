@@ -130,7 +130,7 @@ FEED_EXPORT_ENCODING = "utf-8"
 #         "overwrite": True,
 #     }
 # }
-IMAGES_STORE = f"s3://housingdatalake/images/{BOT_NAME}/"
+IMAGES_STORE = f"s3://lake/bronze/images/{BOT_NAME}/"
 AWS_ENDPOINT_URL = "http://minio:9000"
 AWS_ACCESS_KEY_ID = "admin"
 AWS_SECRET_ACCESS_KEY = "adminadmin"
@@ -140,7 +140,7 @@ AWS_SECRET_ACCESS_KEY = "adminadmin"
 # PULSAR_TOPIC = "crawl"
 
 EXPORT_BATCH_SIZE = 512
-DELTA_TABLE = f"housingdatalake/{BOT_NAME}/"
+DELTA_TABLE = f"lake/bronze/{BOT_NAME}/"
 
 # Logging settings
 # LOG_FILE = "logs/otodom.log"
